@@ -21,8 +21,21 @@ def main():
                 "severity": "INFO",
             })
 
-    for f in findings:
-        print(f"[{f['status']}] {f['control_id']} — {f['resource']}")
+        total = len(findings)
+        failed = sum(1 for f in findings if f["status"] == "FAIL")
+        passed = sum(1 for f in findings if f["status"] == "PASS")
+        errors = sum(1 for f in findings if f["status"] == "ERROR")
+
+        print(f"Scanned {len(CHECKS)} control(s), evaluated {total} resource(s)")
+        print(f"{passed} passed, {failed} failed, {errors} error(s)\n")
+
+        if not findings:
+            print("No applicable resources found. This is not the same as compliant.")
+
+        for f in findings:
+            print(f"[{f['status']}] {f['control_id']} — {f['resource']}")
+            if f["status"] != "PASS":
+                print(f"    {f['evidence']}")
 
 
 if __name__ == "__main__":
