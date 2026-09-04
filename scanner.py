@@ -1,7 +1,7 @@
 import boto3
-from checks import iam_mfa, s3_public
+from checks import iam_mfa, s3_public, ebs_encryption
 
-CHECKS = [iam_mfa, s3_public]
+CHECKS = [iam_mfa, s3_public,ebs_encryption]
 
 
 def main():
