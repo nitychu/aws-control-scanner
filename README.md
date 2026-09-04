@@ -26,6 +26,18 @@ Requires Python 3.9+ and an AWS account.
 
 In the AWS console, go to IAM, create a user, and attach the AWS-managed `SecurityAudit` policy. Do not grant console access. Generate an access key for CLI use.
 
+**2. Store credentials**
+
+Put your key and secret in `~/.aws/credentials` under a `[default]` profile, and set your region in `~/.aws/config`. Then run `chmod 600 ~/.aws/credentials`.
+
+**3. Install and run**
+
+Create a virtual environment, `pip install -r requirements.txt`, then `python3 scanner.py`. The report is written to `output/report.html`.
+
+**4. Optional: AI explanations**
+
+Add an Anthropic API key to a `.env` file in the project root as `ANTHROPIC_API_KEY`. Without one the scanner runs normally and skips this step. Responses are cached so each control is only sent once.
+
 ## Security decisions
 
 **Least privilege.** This scanner runs as its own service account with only the AWS-managed SecurityAudit policy, which is read-only access to configuration. If the key is leaked, an attacker can learn how the account is configured but they cannot change or delete anything.
