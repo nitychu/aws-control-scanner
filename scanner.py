@@ -1,7 +1,7 @@
 import boto3
-from checks import iam_mfa
+from checks import iam_mfa, s3_public
 
-CHECKS = [iam_mfa]
+CHECKS = [iam_mfa, s3_public]
 
 
 def main():
@@ -21,21 +21,21 @@ def main():
                 "severity": "INFO",
             })
 
-        total = len(findings)
-        failed = sum(1 for f in findings if f["status"] == "FAIL")
-        passed = sum(1 for f in findings if f["status"] == "PASS")
-        errors = sum(1 for f in findings if f["status"] == "ERROR")
+    total = len(findings)
+    failed = sum(1 for f in findings if f["status"] == "FAIL")
+    passed = sum(1 for f in findings if f["status"] == "PASS")
+    errors = sum(1 for f in findings if f["status"] == "ERROR")
 
-        print(f"Scanned {len(CHECKS)} control(s), evaluated {total} resource(s)")
-        print(f"{passed} passed, {failed} failed, {errors} error(s)\n")
+    print(f"Scanned {len(CHECKS)} control(s), evaluated {total} resource(s)")
+    print(f"{passed} passed, {failed} failed, {errors} error(s)\n")
 
-        if not findings:
-            print("No applicable resources found. This is not the same as compliant.")
+    if not findings:
+        print("No applicable resources found. This is not the same as compliant.")
 
-        for f in findings:
-            print(f"[{f['status']}] {f['control_id']} — {f['resource']}")
-            if f["status"] != "PASS":
-                print(f"    {f['evidence']}")
+    for f in findings:
+        print(f"[{f['status']}] {f['control_id']} — {f['resource']}")
+        if f["status"] != "PASS":
+            print(f"    {f['evidence']}")
 
 
 if __name__ == "__main__":
