@@ -1,0 +1,39 @@
+CIS-1.10:
+  title: MFA enabled for IAM users with console access
+  severity: HIGH
+  frameworks:
+    cis_aws: "1.10"
+    nist_csf: "PR.AC-7"
+    iso_27001: "A.9.4.2"
+
+CIS-1.14:
+  title: Access keys rotated within 90 days
+  severity: MEDIUM
+  frameworks:
+    cis_aws: "1.14"
+    nist_csf: "PR.AC-1"
+    iso_27001: "A.9.2.4"
+
+CIS-2.1.5:
+  title: S3 buckets block public access
+  severity: CRITICAL
+  frameworks:
+    cis_aws: "2.1.5"
+    nist_csf: "PR.AC-3"
+    iso_27001: "A.9.4.1"
+
+CIS-2.2.1:
+  title: EBS volumes encrypted at rest
+  severity: HIGH
+  frameworks:
+    cis_aws: "2.2.1"
+    nist_csf: "PR.DS-1"
+    iso_27001: "A.10.1.1"
+
+CIS-5.2:
+  title: No unrestricted ingress to admin ports
+  severity: HIGH
+  frameworks:
+    cis_aws: "5.2"
+    nist_csf: "PR.AC-5"
+    iso_27001: "A.13.1.1"

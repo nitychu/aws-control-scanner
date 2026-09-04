@@ -1,6 +1,6 @@
 import boto3
 from botocore.exceptions import ClientError
-
+import controls
 
 def run(session):
     """CIS 2.1.5 — Ensure S3 buckets block public access."""
@@ -32,13 +32,16 @@ def run(session):
                 status = "ERROR"
                 evidence = str(e)
 
+        control = controls.get("CIS-2.1.5")
+
         findings.append({
             "control_id": "CIS-2.1.5",
-            "title": "S3 buckets block public access",
+            "title": control["title"],
             "status": status,
             "resource": f"arn:aws:s3:::{name}",
             "evidence": evidence,
-            "severity": "CRITICAL",
+            "severity": control["severity"],
+            "frameworks": control["frameworks"],
         })
 
     return findings
