@@ -1,6 +1,6 @@
-# Compliance Terminal 95
+# Provenance
 
-An AWS configuration scanner that checks a live account against CIS AWS Foundations Benchmark controls and produces audit-ready findings.
+An AWS control scanner that collects evidence against CIS benchmark controls..
 
 ## What it does
 
