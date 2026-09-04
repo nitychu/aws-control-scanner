@@ -20,9 +20,11 @@ Each check queries the AWS APIs directly, compares the result against a named co
 
 ## Setup
 
-Requires Python 3 and an AWS account. Create a virtual environment, install boto3, and run scanner.py.
+Requires Python 3.9+ and an AWS account.
 
-Credentials are read from ~/.aws/credentials via boto3's default provider chain. No keys are stored in this repository.
+**1. Create a read-only IAM user**
+
+In the AWS console, go to IAM, create a user, and attach the AWS-managed `SecurityAudit` policy. Do not grant console access. Generate an access key for CLI use.
 
 ## Security decisions
 
