@@ -1,4 +1,5 @@
 import boto3
+import controls 
 
 RISKY_PORTS = {22: "SSH", 3389: "RDP"}
 OPEN_CIDR = "0.0.0.0/0"
@@ -31,9 +32,10 @@ def run(session):
                     if from_port <= port <= to_port:
                         exposed.append(f"{label}/{port}")
 
+            control = controls.get("CIS-5.2")
             findings.append({
                 "control_id": "CIS-5.2",
-                "title": "No unrestricted ingress to admin ports",
+                "title": control["title"],
                 "status": "FAIL" if exposed else "PASS",
                 "resource": group["GroupId"],
                 "evidence": (
@@ -41,7 +43,8 @@ def run(session):
                     if exposed
                     else "no unrestricted ingress to admin ports"
                 ),
-                "severity": "HIGH",
+                "severity": control["severity"],
+                "frameworks": control["frameworks"],
             })
 
     return findings

@@ -1,5 +1,5 @@
 import boto3
-
+import controls
 
 def run(session):
     """CIS 1.10 — Ensure MFA is enabled for all IAM users with a console password."""
@@ -15,14 +15,15 @@ def run(session):
             except iam.exceptions.NoSuchEntityException:
                 continue
             devices = iam.list_mfa_devices(UserName=name)["MFADevices"]
-
+            control = controls.get("CIS-1.10")
             findings.append({
                 "control_id": "CIS-1.10",
-                "title": "MFA enabled for IAM users",
+                "title": control["title"],
                 "status": "PASS" if devices else "FAIL",
                 "resource": user["Arn"],
                 "evidence": f"list_mfa_devices returned {len(devices)} device(s)",
-                "severity": "HIGH",
+                "severity": control["severity"],
+                "frameworks": control["frameworks"],
             })
 
     return findings

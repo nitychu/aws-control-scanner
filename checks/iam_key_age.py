@@ -1,5 +1,6 @@
 import boto3
 from datetime import datetime, timezone
+import controls
 
 MAX_KEY_AGE_DAYS = 90
 
@@ -23,13 +24,15 @@ def run(session):
                 age = (now - key["CreateDate"]).days
                 key_id = key["AccessKeyId"]
 
+                control = controls.get("CIS-1.14")
                 findings.append({
                     "control_id": "CIS-1.14",
-                    "title": "Access keys rotated within 90 days",
+                    "title": control["title"],
                     "status": "FAIL" if age > MAX_KEY_AGE_DAYS else "PASS",
                     "resource": f"{name}/{key_id[-4:]}",
                     "evidence": f"key age {age} days (threshold {MAX_KEY_AGE_DAYS})",
-                    "severity": "MEDIUM",
+                    "severity": control["severity"],
+                    "frameworks": control["frameworks"],
                 })
 
     return findings

@@ -1,5 +1,5 @@
 import boto3
-
+import controls
 
 def run(session):
     """CIS 2.2.1 — Ensure EBS volumes are encrypted at rest."""
@@ -11,13 +11,16 @@ def run(session):
         for volume in page["Volumes"]:
             encrypted = volume["Encrypted"]
 
+           
+            control = controls.get("CIS-2.2.1")
             findings.append({
                 "control_id": "CIS-2.2.1",
-                "title": "EBS volumes encrypted at rest",
+                "title": control["title"],
                 "status": "PASS" if encrypted else "FAIL",
                 "resource": volume["VolumeId"],
                 "evidence": f"Encrypted={encrypted}, state={volume['State']}",
-                "severity": "HIGH",
+                "severity": control["severity"],
+                "frameworks": control["frameworks"],
             })
 
     return findings
