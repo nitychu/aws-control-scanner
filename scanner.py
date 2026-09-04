@@ -1,6 +1,7 @@
 import boto3
 from checks import iam_mfa, s3_public, ebs_encryption, iam_key_age, sg_open_ports
 import report
+import explain
 
 CHECKS = [iam_mfa, s3_public,ebs_encryption, iam_key_age,sg_open_ports]
 
@@ -30,6 +31,10 @@ def main():
     print(f"Scanned {len(CHECKS)} control(s), evaluated {total} resource(s)")
     print(f"{passed} passed, {failed} failed, {errors} error(s)\n")
 
+    try:
+        findings = explain.enrich(findings)
+    except Exception as e:
+        print(f"Explanation step failed: {e}")
     path = report.write(findings, len(CHECKS))
     print(f"Report written to {path}\n")
 

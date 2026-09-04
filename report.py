@@ -29,7 +29,7 @@ th {{ background: #f5f5f5; font-weight: 600; }}
 <span class="ERROR">{errors} errors</span>
 </div>
 <table>
-<tr><th>Control</th><th>Status</th><th>Severity</th><th>Resource</th><th>Evidence</th><th>Frameworks</th></tr>
+<tr><th>Control</th><th>Status</th><th>Severity</th><th>Resource</th><th>Evidence</th><th>Frameworks</th><th>Risk and remediation</th></tr>
 {rows}
 </table>
 </body>
@@ -43,6 +43,7 @@ ROW = """<tr>
 <td class="evidence">{resource}</td>
 <td class="evidence">{evidence}</td>
 <td class="evidence">{frameworks}</td>
+<td class="evidence">{explanation}</td>
 </tr>"""
 
 
@@ -61,6 +62,7 @@ def write(findings, control_count, path="output/report.html"):
             resource=f["resource"],
             evidence=f["evidence"],
             frameworks=fw_text,
+            explanation=f.get("explanation", ""),
         ))
 
     html = TEMPLATE.format(
