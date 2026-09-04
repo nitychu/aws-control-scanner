@@ -11,8 +11,10 @@ Each check queries the AWS APIs directly, compares the result against a named co
 | Control | Description | Severity |
 |---------|-------------|----------|
 | CIS-1.10 | MFA enabled for IAM users with console access | HIGH |
-
-More in progress.
+| CIS-1.14 | Access keys rotated within 90 days | MEDIUM |
+| CIS-2.1.5 | S3 buckets block public access | CRITICAL |
+| CIS-2.2.1 | EBS volumes encrypted at rest | HIGH |
+| CIS-5.2 | No unrestricted ingress to admin ports | HIGH |
 
 ## Setup
 
@@ -42,3 +44,5 @@ Credentials are read from ~/.aws/credentials via boto3's default provider chain.
 - No "not tested" state. A control that could not be evaluated for lack of permission is reported as an error rather than as untested, which an auditor would want distinguished.
 - No historical comparison. Each run is a point-in-time snapshot with no drift detection between scans.
 - Control coverage is partial. This implements a subset of the CIS benchmark, not the full standard.
+- Security group rules using protocol -1 (all traffic) are skipped rather than flagged, so a fully open rule is currently missed.
+- Only IPv4 ranges are evaluated. IPv6 ranges (::/0) are not checked.
