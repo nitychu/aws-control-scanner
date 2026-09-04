@@ -2,6 +2,8 @@
 
 An AWS control scanner that collects evidence against CIS benchmark controls..
 
+![Sample scan report](docs/sample-report.png)
+
 ## What it does
 
 Each check queries the AWS APIs directly, compares the result against a named control, and returns a finding with a control ID, status, resource ARN, evidence, and severity. Passes are recorded as well as failures, because an auditor needs proof that a control was tested rather than silence.

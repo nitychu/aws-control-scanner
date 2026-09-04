@@ -7,7 +7,7 @@ TEMPLATE = """<!DOCTYPE html>
 <meta charset="utf-8">
 <title>Provenance scan report</title>
 <style>
-body {{ font-family: -apple-system, sans-serif; margin: 2rem auto; max-width: 60rem; color: #222; }}
+body {{ font-family: -apple-system, sans-serif; margin: 2rem auto; max-width:90rem; color: #222; }}
 h1 {{ font-size: 1.5rem; }}
 .meta {{ color: #666; font-size: 0.9rem; margin-bottom: 2rem; }}
 .summary span {{ display: inline-block; margin-right: 2rem; font-size: 1.1rem; }}
