@@ -4,7 +4,8 @@ CIS-1.10:
   frameworks:
     cis_aws: "1.10"
     nist_csf: "PR.AC-7"
-    iso_27001: "A.9.4.2"
+    iso_27001: "A.8.5"
+    soc2_tsc: "CC6.1"
 
 CIS-1.14:
   title: Access keys rotated within 90 days
@@ -12,7 +13,8 @@ CIS-1.14:
   frameworks:
     cis_aws: "1.14"
     nist_csf: "PR.AC-1"
-    iso_27001: "A.9.2.4"
+    iso_27001: "A.5.17"
+    soc2_tsc: "CC6.1"
 
 CIS-2.1.5:
   title: S3 buckets block public access
@@ -20,7 +22,8 @@ CIS-2.1.5:
   frameworks:
     cis_aws: "2.1.5"
     nist_csf: "PR.AC-3"
-    iso_27001: "A.9.4.1"
+    iso_27001: "A.8.3"
+    soc2_tsc: "CC6.6"
 
 CIS-2.2.1:
   title: EBS volumes encrypted at rest
@@ -28,7 +31,8 @@ CIS-2.2.1:
   frameworks:
     cis_aws: "2.2.1"
     nist_csf: "PR.DS-1"
-    iso_27001: "A.10.1.1"
+    iso_27001: "A.8.24"
+    soc2_tsc: "CC6.1"
 
 CIS-5.2:
   title: No unrestricted ingress to admin ports
@@ -36,4 +40,5 @@ CIS-5.2:
   frameworks:
     cis_aws: "5.2"
     nist_csf: "PR.AC-5"
-    iso_27001: "A.13.1.1"
+    iso_27001: "A.8.20"
+    soc2_tsc: "CC6.6"
