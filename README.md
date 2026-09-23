@@ -18,6 +18,20 @@ Each check queries the AWS APIs directly, compares the result against a named co
 | CIS-2.2.1 | EBS volumes encrypted at rest | HIGH |
 | CIS-5.2 | No unrestricted ingress to admin ports | HIGH |
 
+## Framework mapping
+
+Each check maps to four frameworks in `controls/mappings.yaml`, so one scan produces evidence for all of them instead of running four separate reviews.
+
+| Control | CIS AWS | NIST CSF | ISO 27001:2022 | SOC 2 TSC |
+|---|---|---|---|---|
+| CIS-1.10 | 1.10 | PR.AC-7 | A.8.5 | CC6.1 |
+| CIS-1.14 | 1.14 | PR.AC-1 | A.5.17 | CC6.1 |
+| CIS-2.1.5 | 2.1.5 | PR.AC-3 | A.8.3 | CC6.6 |
+| CIS-2.2.1 | 2.2.1 | PR.DS-1 | A.8.24 | CC6.1 |
+| CIS-5.2 | 5.2 | PR.AC-5 | A.8.20 | CC6.6 |
+
+ISO references use the 2022 Annex A structure. GDPR and CCPA are deliberately not mapped: these are infrastructure controls, and the only honest link is Article 32, which applies identically to all five and adds nothing.
+
 ## Setup
 
 Requires Python 3.9+ and an AWS account.
